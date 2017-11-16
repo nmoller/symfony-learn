@@ -13,7 +13,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $carRepo = $this->getDoctrine()->getRepository('CarBundle:Car');
-        $cars = $carRepo->findAll();
+        $cars = $carRepo->findCarsWithDetails();
 
         return $this->render('CarBundle:Default:index.html.twig', ['cars' => $cars]);
     }
