@@ -2,6 +2,7 @@
 
 namespace Uqam\CarBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,14 @@ class Make
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Uqam\CarBundle\Entity\Car", mappedBy="make")
+     */
+    private $cars;
+
 
 
     /**
@@ -62,5 +71,45 @@ class Make
     {
         return $this->name;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add car
+     *
+     * @param \Uqam\CarBundle\Entity\Car $car
+     *
+     * @return Make
+     */
+    public function addCar(\Uqam\CarBundle\Entity\Car $car)
+    {
+        $this->cars[] = $car;
+
+        return $this;
+    }
+
+    /**
+     * Remove car
+     *
+     * @param \Uqam\CarBundle\Entity\Car $car
+     */
+    public function removeCar(\Uqam\CarBundle\Entity\Car $car)
+    {
+        $this->cars->removeElement($car);
+    }
+
+    /**
+     * Get cars
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCars()
+    {
+        return $this->cars;
+    }
+}

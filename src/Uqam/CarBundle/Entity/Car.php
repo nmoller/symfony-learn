@@ -22,16 +22,16 @@ class Car
     private $id;
 
     /**
-     * @var string
+     * @var Make
      *
-     * @ORM\Column(name="make", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Uqam\CarBundle\Entity\Make", inversedBy="cars")
      */
     private $make;
 
     /**
-     * @var string
+     * @var Model
      *
-     * @ORM\Column(name="model", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Uqam\CarBundle\Entity\Model", inversedBy="cars")
      */
     private $model;
 
@@ -116,4 +116,3 @@ class Car
         return $this->description;
     }
 }
-
