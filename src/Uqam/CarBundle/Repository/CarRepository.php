@@ -11,10 +11,22 @@ namespace Uqam\CarBundle\Repository;
 class CarRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findCarsWithDetails(){
+        $qb = $this->baseCarJoin();
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findCarWithDetailsById($id) {
+        $qb = $this->baseCarJoin();
+        $qb->where('c.id = :id');
+        $qb->setParameter('id', $id);
+        return $qb->getQuery()->getSingleResult();
+    }
+
+    protected function baseCarJoin() {
         $qb = $this->createQueryBuilder('c');
         $qb->select('c, make, model');
         $qb->join('c.make', 'make');
         $qb->join('c.model', 'model');
-        return $qb->getQuery()->getResult();
+        return $qb;
     }
 }

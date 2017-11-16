@@ -23,7 +23,7 @@ class DefaultController extends Controller
      */
     public function showAction($id) {
         $carRepo = $this->getDoctrine()->getRepository('CarBundle:Car');
-        $car = $carRepo->find($id);
+        $car = $carRepo->findCarWithDetailsById($id);
         return $this->render('CarBundle:Default:show.html.twig', ['car' => $car]);
     }
 }
