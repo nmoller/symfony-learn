@@ -1,0 +1,28 @@
+{% extends '@base/base.html.twig' %}
+
+{% block title %}Cars{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in cars %}
+                <tr>
+                    <td>{{ car.make }}</td>
+                    <td>{{ car.model }}</td>
+                    <td><a href="{{ url('show_car', {id: car.id}) }}"> Show details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+

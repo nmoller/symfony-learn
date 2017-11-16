@@ -1,0 +1,17 @@
+{% extends '@base/base.html.twig' %}
+
+{% block title %}{{ car.make }} - {{ car.model }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ car.make }}</h1>
+        <h2> Model: {{ car.model }}</h2>
+        {% if car.description %}
+            <p>{{ car.description }}</p>
+        {% else %}
+            <p>No description available.</p>
+        {% endif %}
+
+        <a href="{{ url('offer') }}"> Back to offer</a>
+    </div>
+{% endblock %}
